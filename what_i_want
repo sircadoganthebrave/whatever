@@ -1,0 +1,14 @@
+Mgraph <- M #pull master file with all flow parameters (defined above at top of markdown) to dataframe called Mgraph
+#split into two dataframes
+resistant_set <- subset(MgraphR,Group=="resistant")
+susceptible_set <-subset(MgraphR,Group=="susceptible")
+# do a t-test on values in a given column
+t_test_custom <- function(i) {
+  res_vals <- resistant_set[i]
+  sus_vals <- susceptible_set[i]
+  t.test(res_values,sus_values)$p.value
+}
+# if for loops worked like this in R
+for (n in seq(3,102,1)){
+  t_test_custom(n)
+}
